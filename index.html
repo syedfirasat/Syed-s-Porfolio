@@ -292,7 +292,7 @@ nav {
   justify-content: space-between;
   gap: 0.5rem;
   width: 100%;
-  max-width: 48rem;
+  max-width: 56rem;
   border: 1px solid var(--line);
   background: color-mix(in srgb, var(--bg) 60%, transparent);
   backdrop-filter: blur(12px);
@@ -310,6 +310,8 @@ nav {
   letter-spacing: -0.02em;
   color: var(--fg);
   text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-logo-dot {
@@ -350,7 +352,7 @@ nav {
   z-index: -1;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .nav-links {
     display: flex;
   }
@@ -397,7 +399,7 @@ nav {
   cursor: pointer;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .nav-menu-btn {
     display: none;
   }
@@ -778,6 +780,87 @@ h2 {
   .grid-cols-2-7 > :last-child {
     grid-column: span 7;
   }
+}
+
+/* Certificates */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--fg);
+}
+
+.cert-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cert-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.85rem;
+  border: 1px solid var(--line);
+  color: var(--fg);
+}
+
+.cert-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  white-space: nowrap;
+}
+
+.cert-card h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.cert-issuer {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.cert-link {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.cert-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* Projects list */
@@ -1334,6 +1417,41 @@ canvas {
   }
 }
 
+/* Netlify honeypot — visible to bots, hidden from humans */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* Submit status line */
+.form-status {
+  margin: 1.25rem 0 0;
+  padding: 0.9rem 1.1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--line);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.form-status.ok {
+  border-color: #10b981;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+}
+.form-status.err {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: wait;
+  pointer-events: none;
+}
+
 .form-group {
   margin-bottom: 2rem;
 }
@@ -1518,6 +1636,7 @@ canvas {
         <a href="#work">Work</a>
         <a href="#toolkit">Toolkit</a>
         <a href="#experience">Journey</a>
+        <a href="#certificates" data-nav="certificates">Certificates</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-controls">
@@ -1535,9 +1654,10 @@ canvas {
     <li><a href="#work"><span>03</span>Work</a></li>
     <li><a href="#toolkit"><span>04</span>Toolkit</a></li>
     <li><a href="#experience"><span>05</span>Journey</a></li>
-    <li><a href="#contact"><span>06</span>Contact</a></li>
+    <li><a href="#certificates" data-nav="certificates"><span>06</span>Certificates</a></li>
+    <li><a href="#contact"><span>07</span>Contact</a></li>
   </ul>
-  <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.2em;" data-bind="email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f7919e8596849683848e9293c6c6b7909a969e9bd994989a">[email&#160;protected]</a></p>
+  <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.2em;" data-bind="email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c3a352e3d2f3d282f2539386d6d1c3b313d3530723f3331">[email&#160;protected]</a></p>
 </div>
 
 <main>
@@ -1696,11 +1816,26 @@ canvas {
     </div>
   </section>
 
-  <section id="contact">
+  <section id="certificates">
     <div class="wrap">
       <div class="section-header">
         <div class="section-label">
           <span>(05)</span>
+          <span class="divider"></span>
+          <span>Certificates</span>
+        </div>
+        <h2>Proof of the <span class="serif">work put in.</span></h2>
+      </div>
+
+      <div class="certs-grid" id="certificatesList"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">
+          <span>(06)</span>
           <span class="divider"></span>
           <span>Contact</span>
         </div>
@@ -1712,7 +1847,7 @@ canvas {
           <p style="margin: 0 0 0.75rem; font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted);">Drop me a line</p>
           
           <button class="copy-btn" id="emailBtn" aria-label="Copy email address">
-            <span class="email-link" data-bind="email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="72141b0013011306010b1716434332151f131b1e5c111d1f">[email&#160;protected]</a></span>
+            <span class="email-link" data-bind="email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84e2edf6e5f7e5f0f7fde1e0b5b5c4e3e9e5ede8aae7ebe9">[email&#160;protected]</a></span>
             <span class="copy-icon">📋</span>
           </button>
 
@@ -1726,10 +1861,18 @@ canvas {
           <ul class="socials-list" id="socialsList"></ul>
         </div>
 
-        <form class="contact-form" id="contactForm">
+        <!-- Netlify Forms: on deploy, Netlify detects this form and stores
+             submissions in Site → Forms (and emails them to the site owner).
+             The JS below posts via fetch AJAX; mailto is the offline fallback. -->
+        <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p class="hp-field" aria-hidden="true">
+            <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
           <div class="form-group">
-            <label class="form-label">I'm interested in</label>
-            <div class="type-options" id="typeOptions"></div>
+            <label class="form-label" id="topicLabel">I'm interested in</label>
+            <div class="type-options" id="typeOptions" role="group" aria-labelledby="topicLabel"></div>
+            <input type="hidden" name="topic" id="topicField" value="Website">
           </div>
 
           <div class="form-group">
@@ -1753,11 +1896,12 @@ canvas {
           </div>
 
           <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 1.25rem;">
-            <button type="submit" class="btn">Send message</button>
+            <button type="submit" class="btn" id="contactSubmit">Send message</button>
             <span style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--muted);">
               📧 No spam. Ever.
             </span>
           </div>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
     </div>
@@ -1777,6 +1921,7 @@ canvas {
       <a href="#work">Work</a>
       <a href="#toolkit">Toolkit</a>
       <a href="#experience">Journey</a>
+      <a href="#certificates" data-nav="certificates">Certificates</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -1831,7 +1976,7 @@ const CONFIG = {
     ],
     // Honest numbers from your public GitHub — update as you grow
     stats: [
-      { value: "3", label: "GitHub repositories" },
+      { value: "5", label: "GitHub repositories" },
       { value: "10+", label: "Technologies in toolkit" },
       { value: "1", label: "AWS club event site" },
       { value: "100%", label: "Self-driven learning" },
@@ -1844,34 +1989,44 @@ const CONFIG = {
   /* ---- Work — your real GitHub repositories ------------------------ */
   projects: [
     {
+      title: "DevCut.Ai",
+      tagline: "In-browser auditor for AI-generated websites — six automated passes (syntax, faults, UI overlap, simulated attacks) that return one ranked report with fixes already drafted",
+      category: "AI / Dev Tool",
+      year: "2026",
+      role: "Design & Development",
+      stack: ["HTML", "CSS", "JavaScript"],
+      image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgODAwIDUwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJEZXZDdXQgQUkgd2Vic2l0ZSBhdWRpdG9yIHByZXZpZXciPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJkY2JnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzEyMTAxZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwZTBjMWMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImRjY2FyZCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxZDE4MzgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMTYxMjJiIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNkY2JnKSIvPgoKICA8IS0tIGdsb3cgYWNjZW50cyAtLT4KICA8Y2lyY2xlIGN4PSIxMjAiIGN5PSIxMjAiIHI9IjEzMCIgZmlsbD0iIzhiN2JmZiIgZmlsbC1vcGFjaXR5PSIwLjEwIi8+CiAgPGNpcmNsZSBjeD0iNjkwIiBjeT0iNDAwIiByPSIxNTAiIGZpbGw9IiNmZjZiNjEiIGZpbGwtb3BhY2l0eT0iMC4wOCIvPgoKICA8IS0tIGJyb3dzZXIgY2hyb21lIC0tPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0MTIiIHJ4PSIxOCIgZmlsbD0iIzE3MTMzMCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iMC4xMiIvPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0NiIgcng9IjE4IiBmaWxsPSIjMWQxODM4Ii8+CiAgPHJlY3QgeD0iNDgiIHk9Ijc0IiB3aWR0aD0iNzA0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMWQxODM4Ii8+CiAgPGNpcmNsZSBjeD0iNzgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iIzhiN2JmZiIvPgogIDxjaXJjbGUgY3g9Ijk4IiBjeT0iNjciIHI9IjUiIGZpbGw9IiNmZjZiNjEiLz4KICA8Y2lyY2xlIGN4PSIxMTgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iI2ZmYjQ1NCIvPgogIDxyZWN0IHg9IjMwMCIgeT0iNTciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAiIHJ4PSIxMCIgZmlsbD0iIzBlMGMxYyIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iMC4xNCIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iNzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTEiIGxldHRlci1zcGFjaW5nPSIxIiBmaWxsPSIjOGQ4N2E4Ij5kZXZjdXQuYXBwPC90ZXh0PgoKICA8IS0tIGV5ZWJyb3cgLS0+CiAgPHJlY3QgeD0iODQiIHk9IjExMiIgd2lkdGg9IjE5NiIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjOGI3YmZmIiBmaWxsLW9wYWNpdHk9IjAuMTYiLz4KICA8dGV4dCB4PSIxODIiIHk9IjEyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMiIgbGV0dGVyLXNwYWNpbmc9IjIiIGZpbGw9IiNhODliZmYiPlNJWCBBVVRPTUFURUQgUEFTU0VTPC90ZXh0PgoKICA8IS0tIGhlcm8gaGVhZGxpbmUgLS0+CiAgPHRleHQgeD0iODAiIHk9IjIwNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTYiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSItMi41IiBmaWxsPSIjZjFlZWZjIj5QYXN0ZSB5b3VyIHNpdGUuPC90ZXh0PgogIDx0ZXh0IHg9IjgwIiB5PSIyNjgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjU2IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iLTIuNSIgZmlsbD0iI2YxZWVmYyI+R2V0IHRoZSA8dHNwYW4gZmlsbD0iI2ZmNmI2MSI+cGF0Y2guPC90c3Bhbj48L3RleHQ+CgogIDwhLS0gYXVkaXQgcGFzcyBjaGlwcyAtLT4KICA8ZyBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9IjcwMCI+CiAgICA8cmVjdCB4PSI4NCIgeT0iMjk4IiB3aWR0aD0iOTIiIGhlaWdodD0iMzAiIHJ4PSIxNSIgZmlsbD0iIzhiN2JmZiIgZmlsbC1vcGFjaXR5PSIwLjE2IiBzdHJva2U9IiM4YjdiZmYiIHN0cm9rZS1vcGFjaXR5PSIwLjQ1Ii8+CiAgICA8dGV4dCB4PSIxMzAiIHk9IjMxNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2E4OWJmZiI+U3ludGF4PC90ZXh0PgogICAgPHJlY3QgeD0iMTg2IiB5PSIyOTgiIHdpZHRoPSI5MiIgaGVpZ2h0PSIzMCIgcng9IjE1IiBmaWxsPSIjZmY2YjYxIiBmaWxsLW9wYWNpdHk9IjAuMTQiIHN0cm9rZT0iI2ZmNmI2MSIgc3Ryb2tlLW9wYWNpdHk9IjAuNDUiLz4KICAgIDx0ZXh0IHg9IjIzMiIgeT0iMzE3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmY4YTgyIj5GYXVsdHM8L3RleHQ+CiAgICA8cmVjdCB4PSIyODgiIHk9IjI5OCIgd2lkdGg9IjExMiIgaGVpZ2h0PSIzMCIgcng9IjE1IiBmaWxsPSIjZmZiNDU0IiBmaWxsLW9wYWNpdHk9IjAuMTQiIHN0cm9rZT0iI2ZmYjQ1NCIgc3Ryb2tlLW9wYWNpdHk9IjAuNDUiLz4KICAgIDx0ZXh0IHg9IjM0NCIgeT0iMzE3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZjOTgwIj5VSSBvdmVybGFwPC90ZXh0PgogICAgPHJlY3QgeD0iNDEwIiB5PSIyOTgiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzAiIHJ4PSIxNSIgZmlsbD0iIzEwYjk4MSIgZmlsbC1vcGFjaXR5PSIwLjE0IiBzdHJva2U9IiMxMGI5ODEiIHN0cm9rZS1vcGFjaXR5PSIwLjQ1Ii8+CiAgICA8dGV4dCB4PSI0NzAiIHk9IjMxNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzM0ZDM5OSI+QXR0YWNrczwvdGV4dD4KICA8L2c+CgogIDwhLS0gQ1RBIC0tPgogIDxyZWN0IHg9Ijg0IiB5PSIzNjAiIHdpZHRoPSIxNTgiIGhlaWdodD0iNDQiIHJ4PSIyMiIgZmlsbD0iIzhiN2JmZiIvPgogIDx0ZXh0IHg9IjE2MyIgeT0iMzg3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iIzBlMGMxYyI+UnVuIGF1ZGl0PC90ZXh0PgogIDx0ZXh0IHg9IjI2MiIgeT0iMzg3IiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZmlsbD0iIzhkODdhOCI+UnVucyBpbiB5b3VyIGJyb3dzZXIgwrcgbm8gc2lnbnVwPC90ZXh0PgoKICA8IS0tIHJhbmtlZCByZXBvcnQgY2FyZCAtLT4KICA8cmVjdCB4PSI1NTYiIHk9IjEwOCIgd2lkdGg9IjE2OCIgaGVpZ2h0PSIzMTYiIHJ4PSIxNiIgZmlsbD0idXJsKCNkY2NhcmQpIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIwLjE0Ii8+CiAgPHRleHQgeD0iNTc2IiB5PSIxNDAiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIyIiBmaWxsPSIjOGQ4N2E4Ij5SQU5LRUQgUkVQT1JUPC90ZXh0PgogIDxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIj4KICAgIDxyZWN0IHg9IjU3MiIgeT0iMTU2IiB3aWR0aD0iMTM2IiBoZWlnaHQ9IjYyIiByeD0iMTAiIGZpbGw9IiNmZjZiNjEiIGZpbGwtb3BhY2l0eT0iMC4xMCIvPgogICAgPGNpcmNsZSBjeD0iNTg4IiBjeT0iMTc4IiByPSI1IiBmaWxsPSIjZmY2YjYxIi8+CiAgICA8dGV4dCB4PSI2MDIiIHk9IjE4MiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2YxZWVmYyI+WFNTIGV4cG9zdXJlPC90ZXh0PgogICAgPHJlY3QgeD0iNTg0IiB5PSIxOTQiIHdpZHRoPSIxMDgiIGhlaWdodD0iNiIgcng9IjMiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xMiIvPgogICAgPHJlY3QgeD0iNTg0IiB5PSIxOTQiIHdpZHRoPSI5MiIgaGVpZ2h0PSI2IiByeD0iMyIgZmlsbD0iI2ZmNmI2MSIvPgogICAgPHJlY3QgeD0iNTcyIiB5PSIyMzAiIHdpZHRoPSIxMzYiIGhlaWdodD0iNjIiIHJ4PSIxMCIgZmlsbD0iI2ZmYjQ1NCIgZmlsbC1vcGFjaXR5PSIwLjEwIi8+CiAgICA8Y2lyY2xlIGN4PSI1ODgiIGN5PSIyNTIiIHI9IjUiIGZpbGw9IiNmZmI0NTQiLz4KICAgIDx0ZXh0IHg9IjYwMiIgeT0iMjU2IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZjFlZWZjIj5VSSBvdmVybGFwPC90ZXh0PgogICAgPHJlY3QgeD0iNTg0IiB5PSIyNjgiIHdpZHRoPSIxMDgiIGhlaWdodD0iNiIgcng9IjMiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xMiIvPgogICAgPHJlY3QgeD0iNTg0IiB5PSIyNjgiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2IiByeD0iMyIgZmlsbD0iI2ZmYjQ1NCIvPgogICAgPHJlY3QgeD0iNTcyIiB5PSIzMDQiIHdpZHRoPSIxMzYiIGhlaWdodD0iNjIiIHJ4PSIxMCIgZmlsbD0iIzhiN2JmZiIgZmlsbC1vcGFjaXR5PSIwLjEyIi8+CiAgICA8Y2lyY2xlIGN4PSI1ODgiIGN5PSIzMjYiIHI9IjUiIGZpbGw9IiM4YjdiZmYiLz4KICAgIDx0ZXh0IHg9IjYwMiIgeT0iMzMwIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZjFlZWZjIj5TeW50YXggZHJpZnQ8L3RleHQ+CiAgICA8cmVjdCB4PSI1ODQiIHk9IjM0MiIgd2lkdGg9IjEwOCIgaGVpZ2h0PSI2IiByeD0iMyIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjEyIi8+CiAgICA8cmVjdCB4PSI1ODQiIHk9IjM0MiIgd2lkdGg9IjM4IiBoZWlnaHQ9IjYiIHJ4PSIzIiBmaWxsPSIjOGI3YmZmIi8+CiAgICA8cmVjdCB4PSI1NzIiIHk9IjM3OCIgd2lkdGg9IjEzNiIgaGVpZ2h0PSIzMCIgcng9IjE1IiBmaWxsPSIjOGI3YmZmIi8+CiAgICA8dGV4dCB4PSI2NDAiIHk9IjM5NyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iIzBlMGMxYyI+VmlldyBkcmFmdGVkIGZpeGVzPC90ZXh0PgogIDwvZz4KPC9zdmc+Cg==",
+      url: "https://github.com/syedfirasat/DevCut.Ai",
+    },
+    {
+      title: "Doc.bot.Ai",
+      tagline: "AI health assistant with a Python local backend — medical reports, intake questions and urgency-ranked care plans stored in Excel, powered by an OpenRouter model picker",
+      category: "AI / Health",
+      year: "2026",
+      role: "Design & Development",
+      stack: ["Python", "HTML", "CSS", "JavaScript", "AI APIs"],
+      url: "https://github.com/syedfirasat/Doc.bot.Ai",
+      image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgODAwIDUwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJEb2MgQm90IEFJIGhlYWx0aCBhc3Npc3RhbnQgcHJldmlldyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImRiYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZWVmMmY3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2UyZThmMCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZGJ0ZWFsIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzJlYzRiMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwYTdhNmYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8ZmlsdGVyIGlkPSJkYnNvZnQiIHg9Ii0yMCUiIHk9Ii0yMCUiIHdpZHRoPSIxNDAlIiBoZWlnaHQ9IjE0MCUiPgogICAgICA8ZmVEcm9wU2hhZG93IGR4PSI1IiBkeT0iNSIgc3RkRGV2aWF0aW9uPSI3IiBmbG9vZC1jb2xvcj0iI2MzYzlkNiIgZmxvb2Qtb3BhY2l0eT0iMC44NSIvPgogICAgICA8ZmVEcm9wU2hhZG93IGR4PSItNSIgZHk9Ii01IiBzdGREZXZpYXRpb249IjciIGZsb29kLWNvbG9yPSIjZmZmZmZmIiBmbG9vZC1vcGFjaXR5PSIwLjkiLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNkYmJnKSIvPgoKICA8IS0tIGJyb3dzZXIgY2hyb21lIC0tPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0MTIiIHJ4PSIxOCIgZmlsbD0iI2U5ZWRmNCIgc3Ryb2tlPSIjMjIyYzQ0IiBzdHJva2Utb3BhY2l0eT0iMC4xMCIvPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0NiIgcng9IjE4IiBmaWxsPSIjZjJmNWZhIi8+CiAgPHJlY3QgeD0iNDgiIHk9Ijc0IiB3aWR0aD0iNzA0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjZjJmNWZhIi8+CiAgPGNpcmNsZSBjeD0iNzgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iIzBmOWU4ZiIvPgogIDxjaXJjbGUgY3g9Ijk4IiBjeT0iNjciIHI9IjUiIGZpbGw9IiNkNzhhMjUiLz4KICA8Y2lyY2xlIGN4PSIxMTgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iIzk0YTJiYSIvPgogIDxyZWN0IHg9IjMwMCIgeT0iNTciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAiIHJ4PSIxMCIgZmlsbD0iI2U5ZWRmNCIgc3Ryb2tlPSIjMjIyYzQ0IiBzdHJva2Utb3BhY2l0eT0iMC4xMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iNzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTEiIGxldHRlci1zcGFjaW5nPSIxIiBmaWxsPSIjNmI3YTk1Ij5kb2MuYm90LmFpPC90ZXh0PgoKICA8IS0tIG5ldW1vcnBoaWMgc2lkZWJhciAtLT4KICA8cmVjdCB4PSI2NCIgeT0iMTA0IiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjMzMiIgcng9IjE4IiBmaWxsPSIjZTllZGY0IiBmaWx0ZXI9InVybCgjZGJzb2Z0KSIvPgogIDwhLS0gYnJhbmQgLS0+CiAgPHJlY3QgeD0iODQiIHk9IjEyNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiByeD0iOSIgZmlsbD0idXJsKCNkYnRlYWwpIi8+CiAgPHBhdGggZD0iTTk5IDEzMiB2MTQgTTkyIDEzOSBoMTQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIzLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDx0ZXh0IHg9IjEyMiIgeT0iMTQ1IiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iIzIyMmM0NCI+RG9jLkJvdDwvdGV4dD4KICA8IS0tIG5hdiBpdGVtcyAtLT4KICA8ZyBmaWxsPSIjOTRhMmJhIj4KICAgIDxyZWN0IHg9Ijg0IiB5PSIxNzgiIHdpZHRoPSIxMTAiIGhlaWdodD0iMTIiIHJ4PSI2Ii8+CiAgICA8cmVjdCB4PSI4NCIgeT0iMjA2IiB3aWR0aD0iODYiIGhlaWdodD0iMTIiIHJ4PSI2Ii8+CiAgICA8cmVjdCB4PSI4NCIgeT0iMjM0IiB3aWR0aD0iMTAyIiBoZWlnaHQ9IjEyIiByeD0iNiIvPgogICAgPHJlY3QgeD0iODQiIHk9IjI2MiIgd2lkdGg9Ijc0IiBoZWlnaHQ9IjEyIiByeD0iNiIvPgogIDwvZz4KICA8cmVjdCB4PSI4MCIgeT0iMjk4IiB3aWR0aD0iMTE4IiBoZWlnaHQ9IjM4IiByeD0iMTIiIGZpbGw9IiMwZjllOGYiIGZpbGwtb3BhY2l0eT0iMC4xNCIvPgogIDxyZWN0IHg9IjkyIiB5PSIzMTIiIHdpZHRoPSI3MiIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiMwYTdhNmYiLz4KCiAgPCEtLSBoZXJvIGhlYWRsaW5lIC0tPgogIDx0ZXh0IHg9IjI0NiIgeT0iMTcyIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjEzIiBsZXR0ZXItc3BhY2luZz0iMyIgZmlsbD0iIzBhN2E2ZiI+SVNMIENTRSDCtyBBSSBIRUFMVEggQVNTSVNUQU5UPC90ZXh0PgogIDx0ZXh0IHg9IjI0MiIgeT0iMjQ0IiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1MiIgZm9udC13ZWlnaHQ9IjgwMCIgbGV0dGVyLXNwYWNpbmc9Ii0yIiBmaWxsPSIjMjIyYzQ0Ij5Zb3VyIEFJIGhlYWx0aDwvdGV4dD4KICA8dGV4dCB4PSIyNDIiIHk9IjMwNiIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTIiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSItMiIgZmlsbD0iIzIyMmM0NCI+YXNzaXN0YW50PHRzcGFuIGZpbGw9IiMwZjllOGYiPi48L3RzcGFuPjwvdGV4dD4KICA8dGV4dCB4PSIyNDQiIHk9IjM0MiIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM2YjdhOTUiPlJlcG9ydHMsIGludGFrZSBxdWVzdGlvbnMgYW5kIGNhcmUgcGxhbnMg4oCUIHN0b3JlZCBsb2NhbGx5IGluIEV4Y2VsLjwvdGV4dD4KCiAgPCEtLSBDVEEgLS0+CiAgPHJlY3QgeD0iMjQ0IiB5PSIzNjgiIHdpZHRoPSIxNTAiIGhlaWdodD0iNDIiIHJ4PSIyMSIgZmlsbD0idXJsKCNkYnRlYWwpIi8+CiAgPHRleHQgeD0iMzE5IiB5PSIzOTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmZmZmIj5Bc2sgRG9jLkJvdDwvdGV4dD4KCiAgPCEtLSByb2JvdCBtYXNjb3QgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjEwIDIzNikiPgogICAgPHJlY3QgeD0iLTc4IiB5PSItNzAiIHdpZHRoPSIxNTYiIGhlaWdodD0iMTQwIiByeD0iMzQiIGZpbGw9IiNlOWVkZjQiIGZpbHRlcj0idXJsKCNkYnNvZnQpIi8+CiAgICA8cmVjdCB4PSItNTQiIHk9Ii00NiIgd2lkdGg9IjEwOCIgaGVpZ2h0PSI4NCIgcng9IjI0IiBmaWxsPSJ1cmwoI2RidGVhbCkiLz4KICAgIDwhLS0gYW50ZW5uYSAtLT4KICAgIDxsaW5lIHgxPSIwIiB5MT0iLTcwIiB4Mj0iMCIgeTI9Ii04OCIgc3Ryb2tlPSIjMGE3YTZmIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9Ii05NCIgcj0iNyIgZmlsbD0iIzJlYzRiMCIvPgogICAgPCEtLSBleWVzIC0tPgogICAgPGNpcmNsZSBjeD0iLTI0IiBjeT0iLTEyIiByPSI5IiBmaWxsPSIjZmZmZmZmIi8+CiAgICA8Y2lyY2xlIGN4PSIyNCIgY3k9Ii0xMiIgcj0iOSIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPGNpcmNsZSBjeD0iLTIyIiBjeT0iLTEwIiByPSI0IiBmaWxsPSIjMGE3YTZmIi8+CiAgICA8Y2lyY2xlIGN4PSIyNiIgY3k9Ii0xMCIgcj0iNCIgZmlsbD0iIzBhN2E2ZiIvPgogICAgPCEtLSBzbWlsZSAtLT4KICAgIDxwYXRoIGQ9Ik0tMTYgMTIgUTAgMjQgMTYgMTIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+CgogIDwhLS0gbmV1bW9ycGhpYyBpbmZvIGNhcmRzIC0tPgogIDxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIj4KICAgIDxyZWN0IHg9IjQ1MiIgeT0iMzU2IiB3aWR0aD0iMTI4IiBoZWlnaHQ9IjYwIiByeD0iMTYiIGZpbGw9IiNlOWVkZjQiIGZpbHRlcj0idXJsKCNkYnNvZnQpIi8+CiAgICA8cGF0aCBkPSJNNDcwIDM3NiB2MTYgTTQ2MiAzODQgaDE2IiBzdHJva2U9IiMwZjllOGYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8dGV4dCB4PSI0ODgiIHk9IjM4MiIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iIzIyMmM0NCI+SGVhbHRoIHJlcG9ydDwvdGV4dD4KICAgIDx0ZXh0IHg9IjQ4OCIgeT0iNDAwIiBmb250LXNpemU9IjEwIiBmaWxsPSIjOTRhMmJhIj5hdXRvLXNhdmVkIHRvIEV4Y2VsPC90ZXh0PgogICAgPHJlY3QgeD0iNTkyIiB5PSIzNTYiIHdpZHRoPSIxMjgiIGhlaWdodD0iNjAiIHJ4PSIxNiIgZmlsbD0iI2U5ZWRmNCIgZmlsdGVyPSJ1cmwoI2Ric29mdCkiLz4KICAgIDxjaXJjbGUgY3g9IjYxMCIgY3k9IjM4NCIgcj0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGY5ZThmIiBzdHJva2Utd2lkdGg9IjMiLz4KICAgIDxwYXRoIGQ9Ik02MDYgMzg0IGwzIDMgNiAtNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGY5ZThmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHRleHQgeD0iNjI4IiB5PSIzODIiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiMyMjJjNDQiPkNhcmUgcGxhbjwvdGV4dD4KICAgIDx0ZXh0IHg9IjYyOCIgeT0iNDAwIiBmb250LXNpemU9IjEwIiBmaWxsPSIjOTRhMmJhIj51cmdlbmN5LXJhbmtlZDwvdGV4dD4KICA8L2c+Cjwvc3ZnPgo=",
+    },
+    {
+      title: "Croshey.Art",
+      tagline: "Crochet e-commerce storefront with a real-time 3D customiser — pick colours, patterns and sizes, browse handmade toys and check out with an India-ready UPI/Razorpay UI",
+      category: "E-commerce",
+      year: "2026",
+      role: "Design & Development",
+      stack: ["HTML", "Tailwind CSS", "JavaScript"],
+      image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgODAwIDUwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJDcm9zaGV5IEFydCBjcm9jaGV0IGUtY29tbWVyY2Ugd2Vic2l0ZSBwcmV2aWV3Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iY2FiZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkY3RUQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRkZFOEQwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJjYXlhcm4iIGN4PSIwLjM1IiBjeT0iMC4zIiByPSIwLjkiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGQkJGMjQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRDk3NzA2Ii8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJjYWJ0biIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwRjE3MkEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMUUyOTNCIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNjYWJnKSIvPgoKICA8IS0tIHN1YnRsZSBkb3R0ZWQgdGV4dHVyZSAtLT4KICA8ZyBmaWxsPSIjRDk3NzA2IiBmaWxsLW9wYWNpdHk9IjAuMTAiPgogICAgPGNpcmNsZSBjeD0iNjAiIGN5PSI4MCIgcj0iMiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iODAiIHI9IjIiLz4KICAgIDxjaXJjbGUgY3g9IjYwIiBjeT0iMTIwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTIwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iMTIwIiByPSIyIi8+CiAgPC9nPgoKICA8IS0tIGJyb3dzZXIgY2hyb21lIC0tPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0MTIiIHJ4PSIxOCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjMEYxNzJBIiBzdHJva2Utb3BhY2l0eT0iMC4xMiIvPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0NiIgcng9IjE4IiBmaWxsPSIjRkZGMUUwIi8+CiAgPHJlY3QgeD0iNDgiIHk9Ijc0IiB3aWR0aD0iNzA0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjRkZGMUUwIi8+CiAgPGNpcmNsZSBjeD0iNzgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iI0Y1OUUwQiIvPgogIDxjaXJjbGUgY3g9Ijk4IiBjeT0iNjciIHI9IjUiIGZpbGw9IiMxMEI5ODEiLz4KICA8Y2lyY2xlIGN4PSIxMTgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iIzBGMTcyQSIgZmlsbC1vcGFjaXR5PSIwLjU1Ii8+CiAgPHJlY3QgeD0iMzAwIiB5PSI1NyIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMCIgcng9IjEwIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiMwRjE3MkEiIHN0cm9rZS1vcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAwIiB5PSI3MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMSIgbGV0dGVyLXNwYWNpbmc9IjEiIGZpbGw9IiM2NDc0OEIiPmNyb3NoZXkuYXJ0PC90ZXh0PgoKICA8IS0tIGJyYW5kIHJvdyAtLT4KICA8Y2lyY2xlIGN4PSI4NiIgY3k9IjExOCIgcj0iNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDk3NzA2IiBzdHJva2Utd2lkdGg9IjMiLz4KICA8Y2lyY2xlIGN4PSI4NiIgY3k9IjExOCIgcj0iMi41IiBmaWxsPSIjRDk3NzA2Ii8+CiAgPHRleHQgeD0iMTAyIiB5PSIxMjMiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMTciIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwRjE3MkEiPkJlZSAmYW1wOyBCbG9vbTwvdGV4dD4KICA8cmVjdCB4PSI2MDAiIHk9IjEwOCIgd2lkdGg9IjExMiIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSJ1cmwoI2NhYnRuKSIvPgogIDx0ZXh0IHg9IjY1NiIgeT0iMTI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI0ZGRjdFRCI+U2hvcCB0b3lzPC90ZXh0PgoKICA8IS0tIGhlcm8gaGVhZGxpbmUgLS0+CiAgPHRleHQgeD0iODQiIHk9IjIwOCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMyIgbGV0dGVyLXNwYWNpbmc9IjQiIGZpbGw9IiNCNDUzMDkiPkhBTkRNQURFIMK3IE1BREUgVE8gT1JERVI8L3RleHQ+CiAgPHRleHQgeD0iODAiIHk9IjI4MiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsICdUaW1lcyBOZXcgUm9tYW4nLCBzZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9Ii0yIiBmaWxsPSIjMEYxNzJBIj5EZXNpZ24geW91cjwvdGV4dD4KICA8dGV4dCB4PSI4MCIgeT0iMzQ4IiBmb250LWZhbWlseT0iR2VvcmdpYSwgJ1RpbWVzIE5ldyBSb21hbicsIHNlcmlmIiBmb250LXNpemU9IjU4IiBmb250LXN0eWxlPSJpdGFsaWMiIGxldHRlci1zcGFjaW5nPSItMSIgZmlsbD0iI0Q5NzcwNiI+Y3JvY2hldCBpbiAzRC48L3RleHQ+CgogIDwhLS0gQ1RBIHJvdyAtLT4KICA8cmVjdCB4PSI4NCIgeT0iMzgyIiB3aWR0aD0iMTcyIiBoZWlnaHQ9IjQyIiByeD0iMjEiIGZpbGw9InVybCgjY2FidG4pIi8+CiAgPHRleHQgeD0iMTcwIiB5PSI0MDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjRkZGN0VEIj5TdGFydCBkZXNpZ25pbmc8L3RleHQ+CiAgPHJlY3QgeD0iMjcwIiB5PSIzODIiIHdpZHRoPSIxNDAiIGhlaWdodD0iNDIiIHJ4PSIyMSIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjMEYxNzJBIiBzdHJva2Utb3BhY2l0eT0iMC4yNSIvPgogIDx0ZXh0IHg9IjM0MCIgeT0iNDA4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzBGMTcyQSI+QnJvd3NlIHRveXM8L3RleHQ+CgogIDwhLS0geWFybiBiYWxsIHZpc3VhbCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1ODIgMjY4KSI+CiAgICA8Y2lyY2xlIHI9IjkyIiBmaWxsPSJ1cmwoI2NheWFybikiLz4KICAgIDxjaXJjbGUgcj0iOTIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzkyNDAwRSIgc3Ryb2tlLW9wYWNpdHk9IjAuMzUiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHBhdGggZD0iTS02NiAtMzAgQy0zMCAtNTggMzAgLTU4IDY2IC0zMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGN0VEIiBzdHJva2Utb3BhY2l0eT0iMC43NSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0tNzggMCBDLTM2IC0yMiAzNiAtMjIgNzggMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGN0VEIiBzdHJva2Utb3BhY2l0eT0iMC43NSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0tNjYgMzIgQy0zMCA1OCAzMCA1OCA2NiAzMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGN0VEIiBzdHJva2Utb3BhY2l0eT0iMC43NSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0tNDAgLTc4IEMtNTggLTMwIC01OCAzMCAtNDAgNzgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzkyNDAwRSIgc3Ryb2tlLW9wYWNpdHk9IjAuNDUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNNDAgLTc4IEM1OCAtMzAgNTggMzAgNDAgNzgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzkyNDAwRSIgc3Ryb2tlLW9wYWNpdHk9IjAuNDUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8IS0tIGNyb2NoZXQgaG9vayAtLT4KICAgIDxwYXRoIGQ9Ik03OCAtNjQgTDExOCAtMTA0IiBzdHJva2U9IiMwRjE3MkEiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMTE4IC0xMDQgcTE0IC00IDE2IDEwIiBmaWxsPSJub25lIiBzdHJva2U9IiMwRjE3MkEiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPC9nPgogIDwhLS0gY29sb3VyIHN3YXRjaGVzIC0tPgogIDxjaXJjbGUgY3g9IjUyMCIgY3k9IjM5MiIgcj0iMTIiIGZpbGw9IiNGNTlFMEIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGNpcmNsZSBjeD0iNTUyIiBjeT0iMzkyIiByPSIxMiIgZmlsbD0iIzEwQjk4MSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjMiLz4KICA8Y2lyY2xlIGN4PSI1ODQiIGN5PSIzOTIiIHI9IjEyIiBmaWxsPSIjNDMzOENBIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMyIvPgogIDxjaXJjbGUgY3g9IjYxNiIgY3k9IjM5MiIgcj0iMTIiIGZpbGw9IiMwRjE3MkEiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjwvc3ZnPgo=",
+      url: "https://github.com/syedfirasat/Croshey.Art",
+    },
+    {
       title: "Kiro Rush",
-      tagline: "Event & registration website for an AWS Builder Club coding event",
-      category: "Web",
+      tagline: "Event & registration website for Skill 2 Build, the AWS Builder Club coding event at ISL Engineering College",
+      category: "Web / Event",
       year: "2026",
       role: "Design & Development",
       stack: ["HTML", "CSS", "JavaScript", "AWS"],
-      image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgODAwIDUwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJLaXJvIFJ1c2ggZXZlbnQgd2Vic2l0ZSBwcmV2aWV3Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ia3JiZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxNDE0MTQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMGEwYTBhIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNrcmJnKSIvPgoKICA8IS0tIGRvdCBncmlkIC0tPgogIDxnIGZpbGw9IiNmNGY0ZjIiIGZpbGwtb3BhY2l0eT0iMC4xMCI+CiAgICA8ZyBpZD0ia3ItZG90cyIvPgogIDwvZz4KICA8Zz4KICAgIDwhLS0gcm93cyBvZiBkb3RzIGdlbmVyYXRlZCBtYW51YWxseSBpbiBhIGNvbXBhY3QgYmFuZCAtLT4KICAgIDxnIGZpbGw9IiNmNGY0ZjIiIGZpbGwtb3BhY2l0eT0iMC4xMiI+CiAgICAgIDxjaXJjbGUgY3g9IjYwIiBjeT0iNzAiIHI9IjIiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSI3MCIgcj0iMiIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjcwIiByPSIyIi8+CiAgICAgIDxjaXJjbGUgY3g9IjYwIiBjeT0iMTEwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTEwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIyIi8+CiAgICAgIDxjaXJjbGUgY3g9IjYwIiBjeT0iMTUwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTUwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iMTUwIiByPSIyIi8+CiAgICAgIDxjaXJjbGUgY3g9IjYwIiBjeT0iMTkwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTkwIiByPSIyIi8+CiAgICA8L2c+CiAgPC9nPgoKICA8IS0tIGJyb3dzZXIgY2hyb21lIC0tPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0MTIiIHJ4PSIxOCIgZmlsbD0iIzEwMTAxMCIgc3Ryb2tlPSIjZjRmNGYyIiBzdHJva2Utb3BhY2l0eT0iMC4xNiIvPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0NiIgcng9IjE4IiBmaWxsPSIjMTcxNzE3Ii8+CiAgPHJlY3QgeD0iNDgiIHk9Ijc0IiB3aWR0aD0iNzA0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMTcxNzE3Ii8+CiAgPGNpcmNsZSBjeD0iNzgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iI2Y0ZjRmMiIgZmlsbC1vcGFjaXR5PSIwLjM1Ii8+CiAgPGNpcmNsZSBjeD0iOTgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iI2Y0ZjRmMiIgZmlsbC1vcGFjaXR5PSIwLjM1Ii8+CiAgPGNpcmNsZSBjeD0iMTE4IiBjeT0iNjciIHI9IjUiIGZpbGw9IiNmNGY0ZjIiIGZpbGwtb3BhY2l0eT0iMC4zNSIvPgogIDxyZWN0IHg9IjMwMCIgeT0iNTciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAiIHJ4PSIxMCIgZmlsbD0iIzBhMGEwYSIgc3Ryb2tlPSIjZjRmNGYyIiBzdHJva2Utb3BhY2l0eT0iMC4xNCIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iNzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTEiIGxldHRlci1zcGFjaW5nPSIxIiBmaWxsPSIjOGI4Yjg2Ij5raXJvLXJ1c2guZGV2PC90ZXh0PgoKICA8IS0tIGhlcm8gdHlwZSAtLT4KICA8dGV4dCB4PSI4OCIgeT0iMTkwIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjE1IiBsZXR0ZXItc3BhY2luZz0iNCIgZmlsbD0iIzhiOGI4NiI+QVdTIEJVSUxERVIgQ0xVQiDCtyBFVkVOVDwvdGV4dD4KICA8dGV4dCB4PSI4NCIgeT0iMjcyIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI3NiIgZm9udC13ZWlnaHQ9IjgwMCIgbGV0dGVyLXNwYWNpbmc9Ii0zIiBmaWxsPSIjZjRmNGYyIj5LSVJPPC90ZXh0PgogIDx0ZXh0IHg9Ijg0IiB5PSIzNTAiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSI3NiIgZm9udC1zdHlsZT0iaXRhbGljIiBmaWxsPSIjZjRmNGYyIj5SdXNoPC90ZXh0PgoKICA8IS0tIENUQSArIGNvcGlsb3Qgc3BhcmtsZSAtLT4KICA8cmVjdCB4PSI4OCIgeT0iMzg2IiB3aWR0aD0iMTY4IiBoZWlnaHQ9IjQ0IiByeD0iMjIiIGZpbGw9IiNmNGY0ZjIiLz4KICA8dGV4dCB4PSIxNzIiIHk9IjQxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGEwYTBhIj5SZWdpc3RlciBub3c8L3RleHQ+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjQwIDMwMCkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y0ZjRmMiIgc3Ryb2tlLW9wYWNpdHk9IjAuODUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KICAgIDxwYXRoIGQ9Ik0wIC00NiBMMTEgLTExIEw0NiAwIEwxMSAxMSBMMCA0NiBMLTExIDExIEwtNDYgMCBMLTExIC0xMSBaIi8+CiAgICA8cGF0aCBkPSJNNTIgLTIwIEw1NyAtOCBMNjkgLTMgTDU3IDIgTDUyIDE0IEw0NyAyIEwzNSAtMyBMNDcgLTggWiIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPC9nPgo8L3N2Zz4K",   // replace with a real screenshot when deployed
+      image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgODAwIDUwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJLaXJvIFJ1c2ggU2tpbGwgMiBCdWlsZCBldmVudCB3ZWJzaXRlIHByZXZpZXciPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJrcmJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzE0MTQxNCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwYTBhMGEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSJ1cmwoI2tyYmcpIi8+CgogIDwhLS0gZG90IGdyaWQgLS0+CiAgPGcgZmlsbD0iI2Y0ZjRmMiIgZmlsbC1vcGFjaXR5PSIwLjEyIj4KICAgIDxjaXJjbGUgY3g9IjYwIiBjeT0iNzAiIHI9IjIiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSI3MCIgcj0iMiIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjcwIiByPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjExMCIgcj0iMiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjExMCIgcj0iMiIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjExMCIgcj0iMiIvPgogICAgPGNpcmNsZSBjeD0iNjAiIGN5PSIxNTAiIHI9IjIiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxNTAiIHI9IjIiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSIxNTAiIHI9IjIiLz4KICAgIDxjaXJjbGUgY3g9IjYwIiBjeT0iMTkwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTkwIiByPSIyIi8+CiAgPC9nPgoKICA8IS0tIGJyb3dzZXIgY2hyb21lIC0tPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0MTIiIHJ4PSIxOCIgZmlsbD0iIzEwMTAxMCIgc3Ryb2tlPSIjZjRmNGYyIiBzdHJva2Utb3BhY2l0eT0iMC4xNiIvPgogIDxyZWN0IHg9IjQ4IiB5PSI0NCIgd2lkdGg9IjcwNCIgaGVpZ2h0PSI0NiIgcng9IjE4IiBmaWxsPSIjMTcxNzE3Ii8+CiAgPHJlY3QgeD0iNDgiIHk9Ijc0IiB3aWR0aD0iNzA0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMTcxNzE3Ii8+CiAgPGNpcmNsZSBjeD0iNzgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iI2Y0ZjRmMiIgZmlsbC1vcGFjaXR5PSIwLjM1Ii8+CiAgPGNpcmNsZSBjeD0iOTgiIGN5PSI2NyIgcj0iNSIgZmlsbD0iI2Y0ZjRmMiIgZmlsbC1vcGFjaXR5PSIwLjM1Ii8+CiAgPGNpcmNsZSBjeD0iMTE4IiBjeT0iNjciIHI9IjUiIGZpbGw9IiNmNGY0ZjIiIGZpbGwtb3BhY2l0eT0iMC4zNSIvPgogIDxyZWN0IHg9IjMwMCIgeT0iNTciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAiIHJ4PSIxMCIgZmlsbD0iIzBhMGEwYSIgc3Ryb2tlPSIjZjRmNGYyIiBzdHJva2Utb3BhY2l0eT0iMC4xNCIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iNzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTEiIGxldHRlci1zcGFjaW5nPSIxIiBmaWxsPSIjOGI4Yjg2Ij5raXJvLXJ1c2ggwrcgc2tpbGwgMiBidWlsZDwvdGV4dD4KCiAgPCEtLSBoZXJvIHR5cGUgLS0+CiAgPHRleHQgeD0iODgiIHk9IjE2NiIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxNCIgbGV0dGVyLXNwYWNpbmc9IjMiIGZpbGw9IiM4YjhiODYiPklTTCBFTkdJTkVFUklORyBDT0xMRUdFPC90ZXh0PgogIDx0ZXh0IHg9Ijg4IiB5PSIxOTQiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTMiIGxldHRlci1zcGFjaW5nPSI0IiBmaWxsPSIjZmY5OTAwIj5BV1MgQlVJTERFUiBDTFVCIMK3IFNLSUxMIDIgQlVJTEQ8L3RleHQ+CiAgPHRleHQgeD0iODQiIHk9IjI3NiIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzYiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSItMyIgZmlsbD0iI2Y0ZjRmMiI+S0lSTzwvdGV4dD4KICA8dGV4dCB4PSI4NCIgeT0iMzU0IiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iNzYiIGZvbnQtc3R5bGU9Iml0YWxpYyIgZmlsbD0iI2Y0ZjRmMiI+UnVzaDwvdGV4dD4KCiAgPCEtLSBDVEEgKyBjb3BpbG90IHNwYXJrbGUgLS0+CiAgPHJlY3QgeD0iODgiIHk9IjM4NiIgd2lkdGg9IjE2OCIgaGVpZ2h0PSI0NCIgcng9IjIyIiBmaWxsPSIjZmY5OTAwIi8+CiAgPHRleHQgeD0iMTcyIiB5PSI0MTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBhMGEwYSI+UmVnaXN0ZXIgbm93PC90ZXh0PgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY0MCAzMDApIiBmaWxsPSJub25lIiBzdHJva2U9IiNmNGY0ZjIiIHN0cm9rZS1vcGFjaXR5PSIwLjg1IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMCAtNDYgTDExIC0xMSBMNDYgMCBMMTEgMTEgTDAgNDYgTC0xMSAxMSBMLTQ2IDAgTC0xMSAtMTEgWiIvPgogICAgPHBhdGggZD0iTTUyIC0yMCBMNTcgLTggTDY5IC0zIEw1NyAyIEw1MiAxNCBMNDcgMiBMMzUgLTMgTDQ3IC04IFoiIHN0cm9rZS13aWR0aD0iMiIvPgogIDwvZz4KPC9zdmc+Cg==",
       url: "https://github.com/syedfirasat/kiro.reg",
-    },
-    {
-      title: "Portfolio",
-      tagline: "This portfolio — a config-driven single-file site with motion and dark/light themes",
-      category: "Personal",
-      year: "2026",
-      role: "Design & Build",
-      stack: ["TypeScript", "HTML", "CSS", "Motion"],
-      image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgODAwIDUwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0Zm9saW8gd2Vic2l0ZSBwcmV2aWV3Ij4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzBjMGMwYyIvPgoKICA8IS0tIGdyYWluLWxpa2UgZG90cyAtLT4KICA8ZyBmaWxsPSIjZjRmNGYyIiBmaWxsLW9wYWNpdHk9IjAuMDgiPgogICAgPGNpcmNsZSBjeD0iNzAwIiBjeT0iOTAiIHI9IjIiLz48Y2lyY2xlIGN4PSI3NDAiIGN5PSI5MCIgcj0iMiIvPjxjaXJjbGUgY3g9IjcwMCIgY3k9IjEzMCIgcj0iMiIvPjxjaXJjbGUgY3g9Ijc0MCIgY3k9IjEzMCIgcj0iMiIvPgogICAgPGNpcmNsZSBjeD0iNjYwIiBjeT0iMTcwIiByPSIyIi8+PGNpcmNsZSBjeD0iNzAwIiBjeT0iMTcwIiByPSIyIi8+PGNpcmNsZSBjeD0iNzQwIiBjeT0iMTcwIiByPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2NjAiIGN5PSIyMTAiIHI9IjIiLz48Y2lyY2xlIGN4PSI3MDAiIGN5PSIyMTAiIHI9IjIiLz48Y2lyY2xlIGN4PSI3NDAiIGN5PSIyMTAiIHI9IjIiLz4KICAgIDxjaXJjbGUgY3g9IjY2MCIgY3k9IjI1MCIgcj0iMiIvPjxjaXJjbGUgY3g9IjcwMCIgY3k9IjI1MCIgcj0iMiIvPjxjaXJjbGUgY3g9Ijc0MCIgY3k9IjI1MCIgcj0iMiIvPgogICAgPGNpcmNsZSBjeD0iNjYwIiBjeT0iMjkwIiByPSIyIi8+PGNpcmNsZSBjeD0iNzAwIiBjeT0iMjkwIiByPSIyIi8+PGNpcmNsZSBjeD0iNzQwIiBjeT0iMjkwIiByPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2NjAiIGN5PSIzMzAiIHI9IjIiLz48Y2lyY2xlIGN4PSI3MDAiIGN5PSIzMzAiIHI9IjIiLz48Y2lyY2xlIGN4PSI3NDAiIGN5PSIzMzAiIHI9IjIiLz4KICA8L2c+CgogIDwhLS0gcGlsbCBuYXYgLS0+CiAgPHJlY3QgeD0iMjQwIiB5PSI0NiIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI0MCIgcng9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmNGY0ZjIiIHN0cm9rZS1vcGFjaXR5PSIwLjIiLz4KICA8Y2lyY2xlIGN4PSIyNjYiIGN5PSI2NiIgcj0iNSIgZmlsbD0iI2Y0ZjRmMiIvPgogIDx0ZXh0IHg9IjI4NCIgeT0iNzEiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2Y0ZjRmMiI+RmlyYXNhdDwvdGV4dD4KICA8cmVjdCB4PSI0MzAiIHk9IjU2IiB3aWR0aD0iNTYiIGhlaWdodD0iMjAiIHJ4PSIxMCIgZmlsbD0iI2Y0ZjRmMiIvPgogIDx0ZXh0IHg9IjQ1OCIgeT0iNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMSIgZmlsbD0iIzBhMGEwYSI+SG9tZTwvdGV4dD4KCiAgPCEtLSBoZWFkbGluZSAtLT4KICA8dGV4dCB4PSI2NCIgeT0iMjEyIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI3MiIgZm9udC13ZWlnaHQ9IjgwMCIgbGV0dGVyLXNwYWNpbmc9Ii0zIiBmaWxsPSIjZjRmNGYyIj5JIGJ1aWxkIGRpZ2l0YWw8L3RleHQ+CiAgPHRleHQgeD0iNjQiIHk9IjI5MiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjcyIiBmb250LXN0eWxlPSJpdGFsaWMiIGZpbGw9IiNmNGY0ZjIiPmV4cGVyaWVuY2VzPC90ZXh0PgogIDx0ZXh0IHg9IjY0IiB5PSIzNzIiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjcyIiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iLTMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y0ZjRmMiIgc3Ryb2tlLW9wYWNpdHk9IjAuNyIgc3Ryb2tlLXdpZHRoPSIxLjUiPnRoYXQgc3RhbmQgb3V0LjwvdGV4dD4KCiAgPCEtLSBidXR0b25zIC0tPgogIDxyZWN0IHg9IjY0IiB5PSI0MDgiIHdpZHRoPSIxNTAiIGhlaWdodD0iNDIiIHJ4PSIyMSIgZmlsbD0iI2Y0ZjRmMiIvPgogIDx0ZXh0IHg9IjEzOSIgeT0iNDM0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiMwYTBhMGEiPlZpZXcgbXkgd29yazwvdGV4dD4KICA8cmVjdCB4PSIyMjgiIHk9IjQwOCIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI0MiIgcng9IjIxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmNGY0ZjIiIHN0cm9rZS1vcGFjaXR5PSIwLjUiLz4KICA8dGV4dCB4PSIyOTMiIHk9IjQzNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjZjRmNGYyIj5MZXQncyB0YWxrPC90ZXh0PgoKICA8IS0tIHNwaW5uaW5nIGJhZGdlIGhpbnQgLS0+CiAgPGNpcmNsZSBjeD0iNjkwIiBjeT0iNDE4IiByPSIzNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmNGYyIiBzdHJva2Utb3BhY2l0eT0iMC40Ii8+CiAgPHRleHQgeD0iNjkwIiB5PSI0MjMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTAiIGxldHRlci1zcGFjaW5nPSIyIiBmaWxsPSIjOGI4Yjg2Ij5TQ1JPTEw8L3RleHQ+Cjwvc3ZnPgo=",
-      url: "https://github.com/syedfirasat/porfolio",
-    },
-    {
-      title: "My Website",
-      tagline: "My first personal website — an early experiment in shipping my own corner of the web",
-      category: "Personal",
-      year: "2026",
-      role: "Solo project",
-      stack: ["HTML", "CSS"],
-      image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgODAwIDUwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJNeSBmaXJzdCBwZXJzb25hbCB3ZWJzaXRlIHByZXZpZXciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjZjRmNGYxIi8+CgogIDwhLS0gZnJhbWUgbGluZXMgLS0+CiAgPGcgc3Ryb2tlPSIjMGEwYTBhIiBzdHJva2Utb3BhY2l0eT0iMC4xMiIgc3Ryb2tlLXdpZHRoPSIxIj4KICAgIDxsaW5lIHgxPSI2NCIgeTE9IjcwIiB4Mj0iNzM2IiB5Mj0iNzAiLz4KICAgIDxsaW5lIHgxPSI2NCIgeTE9IjQzMCIgeDI9IjczNiIgeTI9IjQzMCIvPgogIDwvZz4KICA8dGV4dCB4PSI2NCIgeT0iNTgiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTMiIGxldHRlci1zcGFjaW5nPSIzIiBmaWxsPSIjNmQ2ZDY4Ij5NWSBXRUJTSVRFIOKAlCAyMDI2PC90ZXh0PgogIDx0ZXh0IHg9IjczNiIgeT0iNTgiIHRleHQtYW5jaG9yPSJlbmQiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTMiIGxldHRlci1zcGFjaW5nPSIzIiBmaWxsPSIjNmQ2ZDY4Ij5WMS4wPC90ZXh0PgoKICA8IS0tIGNlbnRlcmVkIGNvbXBvc2l0aW9uIC0tPgogIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjE4MCIgcj0iNTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBhMGEwYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTY2IiByPSIyMCIgZmlsbD0iIzBhMGEwYSIvPgogIDxwYXRoIGQ9Ik0zNjQgMjIyIEMzNzIgMTkyIDQyOCAxOTIgNDM2IDIyMiBaIiBmaWxsPSIjMGEwYTBhIi8+CgogIDx0ZXh0IHg9IjQwMCIgeT0iMzEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iNTgiIGZvbnQtc3R5bGU9Iml0YWxpYyIgZmlsbD0iIzBhMGEwYSI+SGVsbG8sIEknbSBGaXJhc2F0PC90ZXh0PgogIDxsaW5lIHgxPSIyNjAiIHkxPSIzMzYiIHgyPSI1NDAiIHkyPSIzMzYiIHN0cm9rZT0iIzBhMGEwYSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjM3NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxNSIgbGV0dGVyLXNwYWNpbmc9IjQiIGZpbGw9IiM2ZDZkNjgiPlNUVURFTlQgwrcgQlVJTERFUiDCtyBMRUFSTkVSPC90ZXh0PgoKICA8IS0tIGNvcm5lciBtYXJrcyAtLT4KICA8ZyBzdHJva2U9IiMwYTBhMGEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KICAgIDxwYXRoIGQ9Ik02NCA5MCBWNzYgSDc4Ii8+PHBhdGggZD0iTTczNiA5MCBWNzYgSDcyMiIvPgogICAgPHBhdGggZD0iTTY0IDQxMCBWNDI0IEg3OCIvPjxwYXRoIGQ9Ik03MzYgNDEwIFY0MjQgSDcyMiIvPgogIDwvZz4KPC9zdmc+Cg==",
-      url: "https://github.com/syedfirasat/my-website",
     },
   ],
 
@@ -1883,33 +2038,61 @@ const CONFIG = {
     Tools: ["Git & GitHub", "Figma", "Vite", "Vercel", "VS Code"],
   },
 
-  /* ---- Journey — education & building (edit college name) ---------- */
+  /* ---- Journey — education & building ------------------------------- */
   experience: [
     {
       period: "2026 — Now",
       role: "Independent Developer",
       company: "Self-directed projects",
       description:
-        "Building full-stack web apps and integrating LLMs into real workflows, including the Kiro Rush event website for an AWS Builder Club. (sample — edit as your story grows.)",
-    },
-    {
-      period: "2025 — Present",
-      role: "B.Tech, Computer Science",
-      company: "Your university (edit me)",
-      description:
-        "Studying computer science fundamentals, data structures, web development and AI. (sample — replace with your college and year.)",
+        "Shipping web and AI products end to end — DevCut.Ai, Doc.bot.Ai and Croshey.Art — along with the Kiro Rush event website for the AWS Builder Club.",
     },
     {
       period: "2026",
       role: "Event Website Builder",
-      company: "AWS Builder Club",
+      company: "Working with AWS Builder Club · ISL",
       description:
-        "Designed and shipped the Kiro Rush event site, handling everything from layout and copy to deployment. (sample)",
+        "Designed and shipped the Kiro Rush (Skill 2 Build) event site, handling everything from layout and copy to deployment.",
+    },
+    {
+      period: "2026 — 2029",
+      role: "B.E., Computer Science",
+      company: "ISL Engineering College",
+      description:
+        "Lateral-entry student, class of 2029, joining the B.E. programme after completing a diploma in Electronics & Communication. Studying computer science, full-stack web development and AI.",
+    },
+    {
+      period: "2023 — 2026",
+      role: "Diploma, Electronics & Communication",
+      company: "Polytechnic pathway",
+      description:
+        "Three-year diploma that built my electronics and programming foundation, leading directly to lateral entry into the B.E. Computer Science programme at ISL Engineering College.",
     },
   ],
 
   /* ---- Recognition: empty for now — the card hides automatically --- */
   recognition: [],
+
+  /* ---- Certificates -------------------------------------------------
+     Empty by default — the whole section (and its nav link) stays
+     hidden until you add entries. Replace certificates: [] with the
+     block below, filled in. "url" is optional (credential/verify link).
+
+  certificates: [
+    {
+      title: "AWS Academy Cloud Foundations",
+      issuer: "Amazon Web Services",
+      year: "2026",
+      url: "https://www.credly.com/badges/xxxx",
+    },
+    {
+      title: "Python for Everybody",
+      issuer: "University of Michigan · Coursera",
+      year: "2025",
+    },
+  ],
+  ------------------------------------------------------------------- */
+  certificates: [],
 
   /* ---- Socials ------------------------------------------------------ */
   socials: [
@@ -1947,6 +2130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   safe(initToolkit);
   safe(initExperience);
   safe(initRecognition);
+  safe(initCertificates);
   safe(initContact);
   safe(initSocials);
   safe(initNavigation);
@@ -2233,6 +2417,38 @@ function initRecognition() {
     .join("");
 }
 
+// Certificates — section and its nav links stay hidden until CONFIG has entries
+function initCertificates() {
+  const section = document.getElementById("certificates");
+  const list = document.getElementById("certificatesList");
+  const navHits = document.querySelectorAll('[data-nav="certificates"]');
+  if (!section || !list) return;
+
+  if (!CONFIG.certificates || !CONFIG.certificates.length) {
+    section.style.display = "none";
+    navHits.forEach((a) => (a.style.display = "none"));
+    return;
+  }
+
+  section.style.display = "";
+  navHits.forEach((a) => (a.style.display = ""));
+  list.innerHTML = CONFIG.certificates.map((c) => `
+    <article class="cert-card">
+      <div class="cert-top">
+        <span class="cert-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="9" r="5"/>
+            <path d="M9.2 13.4 8 21l4-2.2L16 21l-1.2-7.6"/>
+          </svg>
+        </span>
+        <span class="cert-badge">${escapeHTML(c.year)}</span>
+      </div>
+      <h3>${escapeHTML(c.title)}</h3>
+      <p class="cert-issuer">${escapeHTML(c.issuer)}</p>
+      ${c.url ? `<a class="cert-link" href="${escapeHTML(c.url)}" target="_blank" rel="noopener noreferrer">View credential <span aria-hidden="true">↗</span></a>` : ""}
+    </article>`).join("");
+}
+
 // Contact
 function initContact() {
   const typeOptions = document.getElementById("typeOptions");
@@ -2244,6 +2460,8 @@ function initContact() {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".type-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
+      const topicField = document.getElementById("topicField");
+      if (topicField) topicField.value = t;
     });
     typeOptions.appendChild(btn);
   });
@@ -2278,15 +2496,75 @@ function initContact() {
   });
 
   const form = document.getElementById("contactForm");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const f = new FormData(form);
-    const type = document.querySelector(".type-btn.active").textContent;
+  const submitBtn = document.getElementById("contactSubmit");
+  const status = document.getElementById("formStatus");
+
+  const setStatus = (kind, msg) => {
+    if (!status) return;
+    status.hidden = false;
+    status.className = `form-status ${kind}`;
+    status.textContent = msg;
+  };
+
+  // Fallback used when the site is opened locally (file://) or hosted
+  // somewhere without Netlify Forms — opens the visitor's mail client.
+  const mailtoFallback = (f, type) => {
     const subject = encodeURIComponent(`${type} inquiry from ${f.get("name")}`);
     const body = encodeURIComponent(`${f.get("message")}
 
 — ${f.get("name")} (${f.get("email")})`);
     window.open(`mailto:${CONFIG.email}?subject=${subject}&body=${body}`, "_self");
+  };
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (form.dataset.sending === "true") return;
+
+    const f = new FormData(form);
+    const type = document.querySelector(".type-btn.active")?.textContent || "General inquiry";
+    f.set("topic", type);
+    f.set("form-name", "contact");
+
+    // Honeypot tripped → pretend success and drop the spam silently
+    if (f.get("bot-field")) {
+      form.reset();
+      setStatus("ok", "Thanks — your message has been sent. I'll get back to you soon.");
+      return;
+    }
+
+    // No Netlify outside a deployed site — keep the old mailto flow there.
+    if (window.location.protocol === "file:") {
+      mailtoFallback(f, type);
+      return;
+    }
+
+    form.dataset.sending = "true";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+    }
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Accept": "application/x-www-form-urlencoded; charset=UTF-8" },
+        body: new URLSearchParams(f).toString(),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      form.reset();
+      document.getElementById("topicField").value = CONFIG.projectTypes[0] || "Website";
+      setStatus("ok", "Thanks — your message has been sent. I'll get back to you soon.");
+    } catch (err) {
+      // Local preview server or non-Netlify host: never lose the message.
+      setStatus("err", "Couldn't send online — opening your email app instead.");
+      mailtoFallback(f, type);
+    } finally {
+      form.dataset.sending = "false";
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send message";
+      }
+    }
   });
 }
 
@@ -2355,7 +2633,7 @@ function initNavigation() {
 
   // Never leave the full-screen menu stuck open after rotating/resizing up
   window.addEventListener("resize", () => {
-    if (window.innerWidth >= 768 && mobileMenu.classList.contains("open")) setMenu(false);
+    if (window.innerWidth >= 1024 && mobileMenu.classList.contains("open")) setMenu(false);
   });
 
   const allLinks = [...navLinks.querySelectorAll("a"), ...mobileMenu.querySelectorAll("a")];
@@ -2391,7 +2669,7 @@ function initNavigation() {
     { rootMargin: "-45% 0px -50% 0px" }
   );
 
-  ["home", "about", "work", "toolkit", "experience", "contact"].forEach((id) => {
+  ["home", "about", "work", "toolkit", "experience", "certificates", "contact"].forEach((id) => {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
@@ -2506,6 +2784,7 @@ function initReveal() {
     "#projectsList li",
     "#toolkitContent > div",
     ".exp-item",
+    "#certificatesList .cert-card",
     "#recognitionCard",
     ".contact-form",
     "#contact .grid-cols-2-7 > :first-child",
@@ -2621,5 +2900,7 @@ function initScrollTop() {
   });
 }
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a50b7f427c10c116',t:'MTc5MzAzOTA1OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a510fd6779d13f5b',t:'MTc5MzA5NjY1Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
+
